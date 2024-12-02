@@ -149,6 +149,5 @@ Configure the APIs by adding your API keys and endpoints in the code.
 
 The Product Aggregator Platform is a scalable and user-friendly solution to simplify online shopping. By consolidating products from multiple e-commerce platforms, the app saves users time and effort while providing a personalized experience. With its robust design and potential for affiliate marketing, it represents an innovative step toward enhancing the e-commerce ecosystem.
 
-vbnet
-Copy code
+ 
 
