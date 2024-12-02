@@ -1,82 +1,34 @@
-import { Home, User, Phone, Edit, ShoppingCart, Heart, LogOut } from 'lucide-react'
-import React, { useState } from 'react';
-import {
- 
-  Menu,
-  MenuItem,
- 
-} from '@mui/material';
-import "../css/Navbar.css"
+import React from "react";
+import '../css/Navbar.css'
+import { Home, User, MessageSquare } from "lucide-react";
+import { Link } from "react-router-dom";
 
-function Navbar() {
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleHover = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
+const Navbar = () => {
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        <div className="navbar-brand">
-          <h2>name</h2>
-        </div>
-        <ul className="navbar-menu">
-          <li className="navbar-item">
-            <Home size={20} />
+    <nav>
+      <h1><Link to={"/"}>App Name</Link></h1>
+      <ul>
+        <li>
+          <Link to="/">
+            <Home size={24} />
             <span>Home</span>
-          </li>
-          <li className="navbar-item">
-            <Phone size={20} />
-            <span>Contact</span>
-          </li>
-          <li 
-            className="navbar-item"
-            onMouseEnter={handleHover}
-          >
-            <User size={20} />
+          </Link>
+        </li>
+        <li>
+          <Link to="/profile">
+            <User size={24} />
             <span>Profile</span>
-            <Menu
-              id="profile-menu"
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-              onMouseLeave={handleClose}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
-              }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'center',
-              }}
-            >
-              <MenuItem onClick={handleClose}>
-                <Edit size={16} style={{marginRight: 10}}/>
-                Edit Profile
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <ShoppingCart size={16} style={{marginRight: 10}}/>
-                Cart
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Heart size={16} style={{marginRight: 10}}/>
-                Favourites
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <LogOut size={16} style={{marginRight: 10}}/>
-                Logout
-              </MenuItem>
-            </Menu>
-          </li>
-        </ul>
-      </div>
+          </Link>
+        </li>
+        <li>
+          <Link to="/feedback">
+            <MessageSquare size={24} />
+            <span>Feedback</span>
+          </Link>
+        </li>
+      </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

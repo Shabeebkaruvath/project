@@ -1,33 +1,32 @@
-import '../css/Favorite.css'
 import React from 'react'
-
-function Cart() {
+import '../css/Favorite.css'
+function Favourite () {
   const keyboard = {
     name: 'Sample keyboard',
-    brand: 'Sample',
+    price: '700',
     type: 'mechanical',
-    layout: 'QWERTY',
+    rating: '4.5',
      
   };
   return (
     <div className='fav'>
       <table>
-        <h5>Cart product list</h5>
+        <h5>Favourite product list</h5>
         <tr>
-        <th>Product Name</th>
+          <th>Product Name</th>
           <th>Price</th>
           <th>Type</th>
           <th>Rating</th>
         </tr>
         <tr>
           <td>{keyboard.name}</td>
-          <td>{keyboard.brand}</td>
+          <td>{keyboard.price}</td>
           <td>{keyboard.type}</td>
-          <td>{keyboard.layout}</td>
+          <td>{keyboard.rating}</td>
         </tr>
       </table>
     </div>
   );
 }
 
-export default Cart
+export default Favourite 
