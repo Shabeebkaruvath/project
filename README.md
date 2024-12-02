@@ -1,5 +1,4 @@
-Product Aggregator Platform
-Introduction
+ 
 The Product Aggregator Platform is a web-based application designed to simplify the online shopping experience. It consolidates product details from multiple e-commerce platforms such as Amazon and Flipkart into a single interface. The platform enables users to explore products, add items to a cart, save favorites, and redirect to official e-commerce websites for purchasing. This project aims to provide a seamless, user-friendly shopping experience and has the potential for monetization through affiliate marketing.
 
 Key Features
