@@ -1,109 +1,45 @@
-import React, { useState } from "react";
-import { Home, User, MessageSquare, AlignJustify, X, ShoppingCart, Star } from "lucide-react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Home, User, X, AlignJustify,MessageCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-    if(isOpen){
-      document.getElementById("hy").style.height='100vh'
-    }
+  const navItems = [
+    { to: '/', icon: Home, label: 'Home' },
 
-  };
-
-  const NavLink = ({ to, icon: Icon, label }) => (
-    <Link 
-      to={to} 
-      className="
-        flex 
-        items-center 
-        space-x-2 
-        py-2 
-        px-4 
-        text-gray-700 
-        hover:bg-blue-100 
-        rounded-lg 
-        transition-colors 
-        duration-300
-      "
-    >
-      <Icon size={24} className="text-blue-500" />
-      <span className={`${!isOpen ? 'hidden' : 'block'} text-sm font-medium`}>
-        {label}
-      </span>
-    </Link>
-  );
+    { to: '/profile', icon: User, label: 'Profile' },
+    { to: '/feedback', icon: MessageCircle, label: 'feedback' },
+ 
+    
+  ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-md z-50">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo */}
-        <Link 
-          to="/" 
-          className="
-            text-2xl 
-            font-bold 
-            text-blue-600 
-            hover:text-blue-700 
-            transition-colors 
-            duration-300
-          "
-        >
-          Name
-        </Link>
+    <nav className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+      <div className="container mx-auto flex justify-between items-center p-4">
+        <Link to="/" className="text-2xl font-bold text-blue-500">Name</Link>
 
-        {/* Mobile Toggle */}
-        <div 
-          className="md:hidden cursor-pointer z-50"
-          onClick={handleToggle}
-        >
-          {isOpen ? (
-            <X 
-              size={30} 
-              className="text-blue-600 animate-rotate-in" 
-            />
-          ) : (
-            <AlignJustify 
-              size={30} 
-              className="text-blue-600 animate-rotate-in" 
-            />
-          )}
+        <div className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X /> : <AlignJustify />}
         </div>
 
-        {/* Navigation Links */}
-        <div id="hy" className={`
-           
-          fixed 
-          top-0 
-          right-0 
-          h-full 
-          bg-white 
-          shadow-lg 
-          w-64 
-          transform 
-          transition-transform 
-          duration-300 
-          ease-in-out 
-          ${isOpen ? 'translate-x-0' : 'translate-x-full'}
-          md:static 
-          md:w-auto 
-          md:bg-transparent 
-          md:shadow-none 
-          md:translate-x-0 
-          md:flex 
-          md:space-x-4
-          pt-20 
-          md:pt-0
+        <div className={`
+          ${isOpen ? 'block' : 'hidden'} 
+          md:block fixed md:static top-16 md:top-0 right-0 
+          bg-white md:bg-transparent w-full md:w-auto 
         `}>
-          <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
-            <NavLink to="/" icon={Home} label="Home" />
-            <NavLink to="/cart" icon={ShoppingCart} label="Cart" />
-            <NavLink to="/favorite" icon={Star} label="Profile" />
-            <NavLink to="/feedback" icon={MessageSquare} label="Feedback" />
-            <NavLink to="/profile" icon={User} label="Profile" />
-          </div>
+          {navItems.map(({ to, icon: Icon, label }) => (
+            <Link 
+              key={to} 
+              to={to} 
+              className="block md:inline-block p-2 text-blue-900"
+            >
+              <div className="flex items-center">
+                <Icon className="mr-2 text-black" />
+                {label}
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </nav>
