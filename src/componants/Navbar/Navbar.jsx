@@ -99,7 +99,7 @@ const Navbar = () => {
         `}>
           <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
             <NavLink to="/" icon={Home} label="Home" />
-            <NavLink to="/cart" icon={ShoppingCart} label="Profile" />
+            <NavLink to="/cart" icon={ShoppingCart} label="Cart" />
             <NavLink to="/favorite" icon={Star} label="Profile" />
             <NavLink to="/feedback" icon={MessageSquare} label="Feedback" />
             <NavLink to="/profile" icon={User} label="Profile" />
