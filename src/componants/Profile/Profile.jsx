@@ -10,6 +10,7 @@ function Profile() {
     avatarUrl: "https://img.icons8.com/?size=100&id=z-JBA_KtSkxG&format=png&color=000000",
   };
 
+
   const ProfileAction = ({ icon: Icon, to, label }) => (
     <Link 
       to={to} 
@@ -23,19 +24,20 @@ function Profile() {
         rounded-lg 
         transition-colors 
         duration-300 
-        text-gray-700 
-        hover:text-blue-600
+        text-[#2e4156]
+         hover:bg-[#2e4156]  
+          hover:text-[#fff]
       "
     >
-      <Icon className="text-blue-500" size={24} />
+      <Icon className="text-[#64b5f6]  hover:text-[#fff]" size={24} />
       <span className="font-medium">{label}</span>
     </Link>
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
+    <div className="min-h-screen  flex items-center justify-center p-4 bg-[#aab7b7] ">
       <div className="
-        bg-white 
+        bg-[#d0e0e0]
         shadow-lg 
         rounded-2xl 
         w-full 
@@ -67,7 +69,7 @@ function Profile() {
             <h2 className="
               text-2xl 
               font-bold 
-              text-blue-800 
+             text-[#2e4156]
               mb-2
             ">
               {user.name}
@@ -77,7 +79,7 @@ function Profile() {
               className="
                 flex 
                 items-center 
-                text-blue-500 
+                text-[#2e4156]
                 hover:text-blue-600 
                 text-sm 
                 space-x-1
@@ -99,16 +101,16 @@ function Profile() {
         ">
           <div className="space-y-2">
             <p className="text-gray-600">
-              <span className="font-semibold text-blue-700">Email:</span> {user.email}
+              <span className="font-semibold text-[#2e4156]">Email:</span> {user.email}
             </p>
             <p className="text-gray-600">
-              <span className="font-semibold text-blue-700">Mobile:</span> {user.number}
+              <span className="font-semibold text-[#2e4156]">Mobile:</span> {user.number}
             </p>
           </div>
         </div>
 
         {/* Profile Actions */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 ">
           <ProfileAction 
             icon={ShoppingCart} 
             to="/cart" 

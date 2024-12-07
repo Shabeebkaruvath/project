@@ -4,7 +4,7 @@ import { Search } from 'lucide-react';
 const AnimatedSearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [displayTerm, setDisplayTerm] = useState('');
-  const [isAnimating, setIsAnimating] = useState(false);
+ 
   const inputRef = useRef(null);
 
   const handleSearch = (event) => {
@@ -14,13 +14,13 @@ const AnimatedSearchBar = () => {
   const displaySearchTerm = () => {
     if (searchTerm.trim()) {
       setDisplayTerm(searchTerm);
-      setIsAnimating(true);
+    
       console.log(`Search Term: ${searchTerm}`);
       
       // Reset animation after a short delay
       setTimeout(() => {
-        setIsAnimating(false);
-      }, 1000);
+        setDisplayTerm("");
+      }, 3000);
     }
   };
 
@@ -30,7 +30,7 @@ const AnimatedSearchBar = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#aab7b7] flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="relative">
           <input
@@ -46,16 +46,17 @@ const AnimatedSearchBar = () => {
               py-3 
               rounded-full 
               border-2 
-              border-blue-200 
-              focus:border-blue-500 
+              border-[#2e4156] 
+              focus:border-[#000]
               focus:outline-none 
               focus:ring-2 
-              focus:ring-blue-300 
-              transition-all 
-              duration-300 
+              text-black
+              placeholder-[#2e4156]
+              focus:placeholder-[#2e4156]
+              focus:ring-[#2e4156]
               text-gray-700 
-              shadow-md
-              ${isAnimating ? 'animate-pulse' : ''}
+              bg-transparent
+              }
             `}
             onKeyPress={(e) => e.key === 'Enter' && displaySearchTerm()}
           />
@@ -67,7 +68,9 @@ const AnimatedSearchBar = () => {
               top-1/2 
               transform 
               -translate-y-1/2 
-              bg-blue-500 
+              bg-[#2e4156] 
+              hover:bg-black
+              hover:text-white
               text-white 
               rounded-full 
               w-10 

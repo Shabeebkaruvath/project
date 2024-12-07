@@ -16,10 +16,12 @@ function Feedback() {
     }
   };
 
+ 
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#aab7b7] flex items-center justify-center p-4">
       <div className="
-        bg-white 
+        bg-[#d0e0e0]
         shadow-lg 
         rounded-2xl 
         w-full 
@@ -30,8 +32,8 @@ function Feedback() {
         border-blue-100
       ">
         <div className="flex items-center space-x-3 mb-4">
-          <MessageCircle className="text-blue-500" size={32} />
-          <h2 className="text-2xl font-bold text-blue-800">
+          <MessageCircle className="text-[#2e4156]" size={32} />
+          <h2 className="text-2xl font-bold text-[#2e4156]">
             Share Your Feedback
           </h2>
         </div>
@@ -45,17 +47,19 @@ function Feedback() {
               w-full 
               p-4 
               border-2 
-              border-blue-200 
+              border-black
               rounded-lg 
               focus:outline-none 
               focus:ring-2 
-              focus:ring-blue-300 
+              focus:ring-[#2e4156]
               focus:border-transparent 
               transition-all 
               duration-300 
               resize-y 
               min-h-[150px]
               text-gray-700
+              bg-transparent
+              placeholder-black
             "
           />
 
@@ -63,7 +67,7 @@ function Feedback() {
             type="submit" 
             className="
               w-full 
-              bg-blue-500 
+              bg-[#2e4156] 
               text-white 
               py-3 
               rounded-lg 
@@ -71,7 +75,7 @@ function Feedback() {
               items-center 
               justify-center 
               space-x-2 
-              hover:bg-blue-600 
+              hover:bg-[#253342]
               transition-colors 
               duration-300 
               shadow-md 
