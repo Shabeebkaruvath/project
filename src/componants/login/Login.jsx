@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState  } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { Lock, User, Eye, EyeOff } from 'lucide-react';
+import swal from 'sweetalert';
+
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
 
   const handleSubmit = (e) => {
@@ -15,8 +19,9 @@ function Login() {
     } else {
       setError('');
       // Add your login logic here
-      alert('Login successful!');
+      swal("Logged succesfully", "", "success");
       // Clear form after successful submission
+      navigate('/')
       setUsername('');
       setPassword('');
     }

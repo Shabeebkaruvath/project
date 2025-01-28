@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { Lock, User, Eye, EyeOff } from 'lucide-react';
+import swal from 'sweetalert';
 
 function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [error, setError] = useState('');
@@ -29,7 +32,8 @@ function Register() {
 
     setError('');
     setSuccess(true);
-    alert('Registration successful!');
+    swal("Registration successful!", "", "success");
+    navigate('/')
 
     // Clear form after successful submission
     setName('');
