@@ -7,6 +7,9 @@ import Profile from './componants/Profile/Profile';
 import Cart from './componants/Profile/Cart';
 import Favorite from './componants/Profile/Favorite ';
 import Feedback from './componants/Feedback/Feedback';
+import Login  from './componants/login/Login';
+import Register  from './componants/login/Register';
+ 
 
 function App() {
   return (
@@ -19,6 +22,8 @@ function App() {
           <Route path='/feedback' element={<Feedback/>}/>
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/favorite' element={<Favorite/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/register' element={<Register/>}/>
         </Routes>
       </div>
     </Router>

@@ -19,7 +19,7 @@ function Feedback() {
  
 
   return (
-    <div className="min-h-screen bg-[#aab7b7] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#e6e6e6] flex items-center justify-center p-4">
       <div className="
         bg-[#d0e0e0]
         shadow-lg 

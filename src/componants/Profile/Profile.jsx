@@ -35,9 +35,9 @@ function Profile() {
   );
 
   return (
-    <div className="min-h-screen  flex items-center justify-center p-4 bg-[#aab7b7] ">
+    <div className="min-h-screen  flex items-center justify-center p-4 bg-[#e6e6e6] ">
       <div className="
-        bg-[#d0e0e0]
+        
         shadow-lg 
         rounded-2xl 
         w-full 
