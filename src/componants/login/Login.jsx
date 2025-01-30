@@ -1,102 +1,115 @@
-import React, { useState  } from 'react';
-import { useNavigate } from 'react-router-dom'
-import { Lock, User, Eye, EyeOff } from 'lucide-react';
-import swal from 'sweetalert';
+import React, { useState } from 'react';
+import { auth } from '../../firebase/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate,Link} from 'react-router-dom';
+ 
 
-
-function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+const Login = ({ setStatelogin }) => {  // Accept setStatelogin from props
   const navigate = useNavigate();
-  const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    
-    if (!username || !password) {
-      setError('Please fill in both fields.');
-    } else {
-      setError('');
-      // Add your login logic here
-      swal("Logged succesfully", "", "success");
-      // Clear form after successful submission
-      navigate('/')
-      setUsername('');
-      setPassword('');
+    setError(null);
+    setIsLoading(true);
+
+    try {
+      // 1. Sign in the user with email and password
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+
+      // 2. Redirect the user after successful login
+      alert('Login successful!');
+      setStatelogin(true);  // Update the login state in App.js
+      navigate('/');  // Navigate to a protected route (change as needed)
+
+    } catch (err) {
+      let errorMessage = 'Login failed. Please try again.';
+
+      switch (err.code) {
+        case 'auth/user-not-found':
+          errorMessage = 'No user found with this email.';
+          break;
+        case 'auth/wrong-password':
+          errorMessage = 'Incorrect password.';
+          break;
+        case 'auth/invalid-email':
+          errorMessage = 'Invalid email address.';
+          break;
+        default:
+          errorMessage = err.message;
+      }
+
+      setError(errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  // Toggle password visibility
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
-
   return (
-    <div className="min-h-screen bg-[#e6e6e6] flex items-center justify-center p-4">
-      <div className="bg-[#d0e0e0] shadow-lg rounded-2xl w-full max-w-md p-6 space-y-6 border border-blue-100">
-        <div className="flex items-center space-x-3 mb-4">
-          <User className="text-[#2e4156]" size={32} />
-          <h2 className="text-2xl font-bold text-[#2e4156]">Login</h2>
-        </div>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
+      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
+        <h2 className="text-center text-3xl font-bold text-gray-900">
+          Login to Your Account
+        </h2>
 
-        {error && <div className="text-red-600 text-sm mb-4">{error}</div>}
+        <form onSubmit={handleLogin} className="mt-8 space-y-6">
+          {error && (
+            <div className="text-red-500 text-sm text-center bg-red-50 p-3 rounded">
+              {error}
+            </div>
+          )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="username" className="text-[#2e4156]">Email</label>
+          <div className="space-y-4">
             <input
               type="email"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your email"
-              className="
-                w-full p-4 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2e4156]
-                focus:border-transparent transition-all duration-300 text-gray-700 bg-transparent placeholder-black
-              "
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              disabled={isLoading}
+              className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
-          </div>
 
-          <div className="relative">
-            <label htmlFor="password" className="text-[#2e4156]">Password</label>
-            <div className='relative'>
             <input
-              type={passwordVisible ? 'text' : 'password'} // Toggle input type based on passwordVisible state
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              className="
-                w-full p-4 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2e4156]
-                focus:border-transparent transition-all duration-300 text-gray-700 bg-transparent placeholder-black
-              "
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              disabled={isLoading}
+              className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
-            {/* Toggle password visibility icon */}
-            <button
-              type="button"
-              onClick={togglePasswordVisibility}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#2e4156] "
-            >
-              {passwordVisible ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
-            </div>
           </div>
 
-          <button
-            type="submit"
-            className="
-              w-full bg-[#2e4156] text-white py-3 rounded-lg flex items-center justify-center space-x-2
-              hover:bg-[#253342] transition-colors duration-300 shadow-md hover:shadow-lg
-            "
+          <button 
+            type="submit" 
+            disabled={isLoading}
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Lock size={20} />
-            <span>Login</span>
+            {isLoading ? 'Logging in...' : 'Login'}
           </button>
         </form>
+        <pre>if you dont have an account <Link to="/register"><span style={{color: "blue",textDecoration:"underline"}}>register</span></Link></pre>
       </div>
     </div>
   );
-}
+};
 
 export default Login;
