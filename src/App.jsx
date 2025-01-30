@@ -24,14 +24,17 @@ function AppContent({ statelogin, setStatelogin }) {
 
   return (
     <div className="App">
-      {location.pathname !== '/login' && location.pathname !== '/register' && statelogin && <Navbar />}
+      {/* Render Navbar only if the user is logged in and not on login/register pages */}
+      {statelogin && location.pathname !== '/login' && location.pathname !== '/register' && <Navbar />}
 
       <Routes>
+        {/* Protect routes with conditional rendering */}
         <Route path="/" element={statelogin ? <Home /> : <Navigate to="/login" />} />
         <Route path="/profile" element={statelogin ? <Profile /> : <Navigate to="/login" />} />
         <Route path="/feedback" element={statelogin ? <Feedback /> : <Navigate to="/login" />} />
         <Route path="/cart" element={statelogin ? <Cart /> : <Navigate to="/login" />} />
 
+        {/* Public routes */}
         <Route path="/login" element={<Login setStatelogin={setStatelogin} />} />
         <Route path="/register" element={<Register />} />
       </Routes>

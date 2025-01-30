@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
-import { Home, User, X, AlignJustify,MessageCircle,ShoppingCart  } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Home, User, X, AlignJustify,MessageCircle,ShoppingCart,LogOut   } from 'lucide-react';
+import { Link,useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({setStatelogin}) => {
   const [isOpen, setIsOpen] = useState(false);
+  const nav=useNavigate();
 
   const navItems = [
     { to: '/', icon: Home, label: 'Home' },
 
     { to: '/profile', icon: User, label: 'Profile' },
     { to: '/feedback', icon: MessageCircle, label: 'feedback' },
- 
     
   ];
+  const handleLogout = () => {
+     // Log out by setting statelogin to false
+    alert('Logged out successfully!'); // Optionally alert the user
+    setStatelogin=false;
+    nav('login')
+  };
+
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-[#2e4156] shadow-md z-50">
@@ -40,6 +47,7 @@ const Navbar = () => {
               </div>
             </Link>
           ))}
+          <LogOut onClick={handleLogout}></LogOut>
         </div>
       </div>
     </nav>
