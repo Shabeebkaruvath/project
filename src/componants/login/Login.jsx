@@ -61,6 +61,7 @@ const Login = ({ setStatelogin }) => {  // Accept setStatelogin from props
       }
 
       setError(errorMessage);
+     
     } finally {
       setIsLoading(false);
     }
@@ -131,17 +132,7 @@ const Login = ({ setStatelogin }) => {  // Accept setStatelogin from props
           </div>
 
           <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                id="show-password"
-                type="checkbox"
-                onChange={() => setShow(!show)}
-                className="h-4 w-4 text-[#333d7a] focus:ring-[#333d7a]/30 border-[#333d7a]/30 rounded"
-              />
-              <label htmlFor="show-password" className="ml-2 block text-sm text-[#333d7a]">
-                Show password
-              </label>
-            </div>
+             
              
           </div>
 
