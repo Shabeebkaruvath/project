@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { auth } from '../../firebase/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate,Link} from 'react-router-dom';
+import { useNavigate,Link} from 'react-router-dom'
+import { Eye, EyeOff } from 'lucide-react';
  
+ 
+
 
 const Login = ({ setStatelogin }) => {  // Accept setStatelogin from props
   const navigate = useNavigate();
@@ -35,7 +38,8 @@ const Login = ({ setStatelogin }) => {  // Accept setStatelogin from props
       );
 
       // 2. Redirect the user after successful login
-      alert('Login successful!');
+       
+      console.log(userCredential)
       setStatelogin(true);  // Update the login state in App.js
       navigate('/');  // Navigate to a protected route (change as needed)
 
@@ -61,52 +65,111 @@ const Login = ({ setStatelogin }) => {  // Accept setStatelogin from props
       setIsLoading(false);
     }
   };
+  const [show,setShow]=useState(true);
+   
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
-        <h2 className="text-center text-3xl font-bold text-gray-900">
-          Login to Your Account
-        </h2>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#faebee] to-white py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg transform transition-all hover:scale-[1.01]">
+        <div className="text-center">
+          <h2 className="mt-6 text-3xl font-extrabold text-[#333d7a]">
+            Welcome Back
+          </h2>
+          <p className="mt-2 text-sm text-[#333d7a]/70">
+            Please sign in to your account
+          </p>
+        </div>
 
         <form onSubmit={handleLogin} className="mt-8 space-y-6">
           {error && (
-            <div className="text-red-500 text-sm text-center bg-red-50 p-3 rounded">
+            <div className="text-red-500 text-sm text-center bg-red-50 p-4 rounded-lg border border-red-200">
               {error}
             </div>
           )}
 
-          <div className="space-y-4">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleChange}
-              disabled={isLoading}
-              className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            />
+          <div className="space-y-5">
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-[#333d7a] mb-1">
+                Email address
+              </label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Enter email"
+                value={formData.email}
+                onChange={handleChange}
+                disabled={isLoading}
+                className="appearance-none rounded-lg relative block w-full px-4 py-3 border border-[#333d7a]/20 placeholder-[#333d7a]/50 text-[#333d7a] focus:outline-none focus:ring-2 focus:ring-[#333d7a]/30 focus:border-[#333d7a] bg-[#faebee]/20 transition-colors duration-200"
+              />
+            </div>
 
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
-              disabled={isLoading}
-              className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            />
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-[#333d7a] mb-1">
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  id="password"
+                  type={show ? 'text' : 'password'}
+                  name="password"
+                  placeholder="Enter your password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                  className="appearance-none rounded-lg relative block w-full px-4 py-3 border border-[#333d7a]/20 placeholder-[#333d7a]/50 text-[#333d7a] focus:outline-none focus:ring-2 focus:ring-[#333d7a]/30 focus:border-[#333d7a] bg-[#faebee]/20 transition-colors duration-200"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShow(!show)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#333d7a]/50 hover:text-[#333d7a]"
+                >
+                  {show ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+              </div>
+            </div>
           </div>
 
-          <button 
-            type="submit" 
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <input
+                id="show-password"
+                type="checkbox"
+                onChange={() => setShow(!show)}
+                className="h-4 w-4 text-[#333d7a] focus:ring-[#333d7a]/30 border-[#333d7a]/30 rounded"
+              />
+              <label htmlFor="show-password" className="ml-2 block text-sm text-[#333d7a]">
+                Show password
+              </label>
+            </div>
+             
+          </div>
+
+          <button
+            type="submit"
             disabled={isLoading}
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-[#333d7a] hover:bg-[#333d7a]/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#333d7a] disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
           >
-            {isLoading ? 'Logging in...' : 'Login'}
+            {isLoading ? (
+              <span className="flex items-center">
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Signing in...
+              </span>
+            ) : (
+              'Sign in'
+            )}
           </button>
+
+          <div className="text-center text-sm text-[#333d7a]/70">
+            Don't have an account?{' '}
+            <Link to="/register" className="font-medium text-[#333d7a] hover:text-[#333d7a]/80 transition-colors duration-200">
+              Register now
+            </Link>
+          </div>
         </form>
-        <pre>if you dont have an account <Link to="/register"><span style={{color: "blue",textDecoration:"underline"}}>register</span></Link></pre>
       </div>
     </div>
   );
