@@ -57,7 +57,7 @@ const RegisterForm = ({ setStatelogin }) => {
       await setDoc(doc(db, 'users', userCredential.user.uid), userDoc);
       setFormData({ email: '', password: '', confirmPassword: '' });
       alert('Registration successful!');
-      setStatelogin(true);
+      setStatelogin=true
       navigate('/');
 
     } catch (err) {

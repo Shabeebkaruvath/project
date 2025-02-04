@@ -16,7 +16,7 @@ const Navbar = ( ) => {
 
   
   return (
-    <nav className="fixed top-0 left-0 w-full bg-[#2e4156] shadow-md z-50">
+    <nav className="absolute top-0 left-0 w-full bg-[#2e4156] shadow-md z-50 mb-5">
       <div className="container mx-auto flex  justify-between items-center p-4 ">
         <Link to="/" className="text-3xl text-[#d4d8dd] mr-10 font-['Open_Sans']"><div className='flex items-center'>shop<ShoppingCart size={30}/></div></Link>
 

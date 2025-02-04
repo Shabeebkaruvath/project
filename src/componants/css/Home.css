@@ -22,3 +22,9 @@
     border-radius: 5px;
     cursor: pointer;
   }
+  .sbefore{
+    display: none;
+  }
+  .safter{
+    display: flex;
+  }
