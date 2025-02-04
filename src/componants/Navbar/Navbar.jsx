@@ -33,7 +33,7 @@ const Navbar = ( ) => {
             <Link 
               key={to} 
               to={to} 
-              className="block md:inline-block p-2 hover:bg-[#eff6ff] rounded  text-[#d4d8dd] hover:text-[#2e4156]"
+              className="block md:inline-block p-2 hover:bg-[#e5e5e5] rounded  text-[black] hover:text-[#595959]"
             >
               <div className="flex items-center">
                 <Icon className="mr-1" />

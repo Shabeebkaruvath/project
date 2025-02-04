@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Search } from "lucide-react";
+import { Search,ShoppingCart} from "lucide-react";
 
 const AnimatedSearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -109,7 +109,7 @@ const AnimatedSearchBar = () => {
                         ${product.price}
                       </p>
                       <button className="text-sm bg-blue-600 text-white px-3 py-1.5 rounded-md hover:bg-blue-700">
-                        Add
+                        <ShoppingCart/>
                       </button>
                     </div>
                   </div>
